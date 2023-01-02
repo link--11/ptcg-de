@@ -6,7 +6,9 @@ export default defineConfig({
         laravel({
             input: [
                 'resources/styles/main.sass',
-                'resources/scripts/main.js'
+                'resources/styles/tailwind.css',
+                'resources/scripts/main.js',
+                'resources/scripts/alpine.js'
             ],
             refresh: true,
         }),
