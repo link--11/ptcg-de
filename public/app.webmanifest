@@ -1,0 +1,61 @@
+{
+    "name": "",
+    "short_name": "",
+    "description": "",
+    "display": "minimal-ui",
+    "background_color": "#121212",
+    "theme_color": "#a41c32",
+    "icons": [
+        {
+            "src": "",
+            "type": "image/png",
+            "sizes": "48x48",
+            "purpose": "maskable"
+        },
+        {
+            "src": "",
+            "type": "image/png",
+            "sizes": "96x96",
+            "purpose": "maskable"
+        },
+        {
+            "src": "",
+            "type": "image/png",
+            "sizes": "192x192",
+            "purpose": "maskable"
+        },
+        {
+            "src": "",
+            "type": "image/png",
+            "sizes": "512x512",
+            "purpose": "maskable"
+        },
+        {
+            "src": "",
+            "type": "image/png",
+            "sizes": "48x48",
+            "purpose": "any"
+        },
+        {
+            "src": "",
+            "type": "image/png",
+            "sizes": "96x96",
+            "purpose": "any"
+        },
+        {
+            "src": "",
+            "type": "image/png",
+            "sizes": "192x192",
+            "purpose": "any"
+        },
+        {
+            "src": "",
+            "type": "image/png",
+            "sizes": "512x512",
+            "purpose": "any"
+        }
+    ],
+    "id": "/?source=pwa",
+    "start_url": "/?source=pwa",
+    "scope": "/"
+}
