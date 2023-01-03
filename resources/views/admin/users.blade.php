@@ -40,8 +40,11 @@
 
             @foreach ($users as $user)
                 <tr>
-                    <td><a href="/admin/users/{{ $user->id }}">{{ $user->email }}</a></td>
-                    <td><a href="/admin/users/{{ $user->id }}">{{ $user->name }}</a></td>
+                    <td><a href="{{ route('admin.user', [ 'id' => $user->id ]) }}">
+                            {{ $user->email }}
+                            @if ($user->admin) <span class="ml-2 p-1 rounded font-bold text-xs bg-green-300">Admin</span> @endif
+                        </a></td>
+                    <td><a href="{{ route('admin.user', [ 'id' => $user->id ]) }}">{{ $user->name }}</a></td>
                 </tr>
 
             @endforeach

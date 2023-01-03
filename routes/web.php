@@ -22,13 +22,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'home');
 
-Route::middleware('auth')->group(function () {
+Route::group([ 'prefix' => 'xyz', 'middleware' => [ 'auth' ] ],function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
 });
 
-Route::group([ 'prefix' => 'admin', 'middleware' => [ 'auth' ], 'as' => 'admin.' ], function () {
-    Route::redirect('/', '/admin/stores');
+Route::group([ 'prefix' => 'xyz', 'middleware' => [ 'auth' ], 'as' => 'admin.' ], function () {
+    Route::redirect('/', '/xyz/tournaments');
 
     Route::get('/stores', [StoreController::class, 'stores'])->name('stores');
     Route::get('/stores/{id}', [StoreController::class, 'store'])->name('store');

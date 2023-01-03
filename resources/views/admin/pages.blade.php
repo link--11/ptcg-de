@@ -35,8 +35,8 @@
 
             @foreach ($pages as $page)
                 <tr>
-                    <td><a href="/admin/pages/{{ $page->id }}">{{ $page->title }}</a></td>
-                    <td><a href="/admin/pages/{{ $page->id }}">{{ $page->updated_at }}</a></td>
+                    <td><a href="{{ route('admin.page', [ 'id' => $page->id ]) }}">{{ $page->title }}</a></td>
+                    <td><a href="{{ route('admin.page', [ 'id' => $page->id ]) }}">{{ $page->updated_at }}</a></td>
                 </tr>
 
             @endforeach

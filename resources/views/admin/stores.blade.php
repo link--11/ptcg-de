@@ -34,12 +34,14 @@
             <tr>
                 <th>Name</th>
                 <th>Stadt</th>
+                <th>Liga</th>
             </tr>
 
             @foreach ($stores as $store)
                 <tr>
-                    <td><a href="/admin/stores/{{ $store->id }}">{{ $store->name }}</a></td>
-                    <td><a href="/admin/stores/{{ $store->id }}">{{ $store->city }}</a></td>
+                    <td><a href="{{ route('admin.store', [ 'id' => $store->id ]) }}">{{ $store->name }}</a></td>
+                    <td><a href="{{ route('admin.store', [ 'id' => $store->id ]) }}">{{ $store->city }}</a></td>
+                    <td>{{ $store->league ? "✅" : "❌"}}</td>
                 </tr>
 
             @endforeach

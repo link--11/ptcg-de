@@ -36,7 +36,7 @@
         <div class="px-6 text-gray-900">
             <ul>
                 @foreach ($user->stores as $store)
-                    <li><a href="/admin/stores/{{ $store->id }}">{{ $store->name }} {{ $store->city }}</a></li>
+                    <li><a href="{{ route('admin.store', [ 'id' => $store->id ]) }}">{{ $store->name }} {{ $store->city }}</a></li>
                 @endforeach
             </ul>
 

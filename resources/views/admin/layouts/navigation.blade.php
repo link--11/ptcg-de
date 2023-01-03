@@ -4,17 +4,17 @@
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
-                <div class="shrink-0 flex items-center py-2">
+                <a href="/" class="shrink-0 flex items-center py-2">
                     <x-random-pic />
-                </div>
+                </a>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('admin.stores')" :active="request()->routeIs('admin.stores')">
-                        Stores
-                    </x-nav-link>
                     <x-nav-link :href="route('admin.tournaments')" :active="request()->routeIs('admin.tournaments')">
                         Turniere
+                    </x-nav-link>
+                    <x-nav-link :href="route('admin.stores')" :active="request()->routeIs('admin.stores')">
+                        Stores
                     </x-nav-link>
                     @if (Auth::user()->admin)
                         <x-nav-link :href="route('admin.users')" :active="request()->routeIs('admin.users')">
@@ -74,11 +74,11 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('admin.stores')" :active="request()->routeIs('admin.stores')">
-                Stores
-            </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('admin.tournaments')" :active="request()->routeIs('admin.tournaments')">
                 Turniere
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('admin.stores')" :active="request()->routeIs('admin.stores')">
+                Stores
             </x-responsive-nav-link>
             @if (Auth::user()->admin)
                 <x-responsive-nav-link :href="route('admin.users')" :active="request()->routeIs('admin.users')">
