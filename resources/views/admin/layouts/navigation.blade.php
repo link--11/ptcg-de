@@ -4,16 +4,20 @@
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
-                <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-                        //
-                    </a>
+                <div class="shrink-0 flex items-center py-2">
+                    <x-random-pic />
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                    <x-nav-link :href="route('admin.stores')" :active="request()->routeIs('admin.stores')">
+                        Stores
+                    </x-nav-link>
+                    <x-nav-link :href="route('admin.users')" :active="request()->routeIs('admin.users')">
+                        User
+                    </x-nav-link>
+                    <x-nav-link :href="route('admin.pages')" :active="request()->routeIs('admin.pages')">
+                        Inhalte
                     </x-nav-link>
                 </div>
             </div>

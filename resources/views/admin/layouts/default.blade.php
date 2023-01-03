@@ -18,18 +18,25 @@
             @include('admin.layouts.navigation')
 
             <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white shadow">
+            @if (isset($title))
+                <div class="bg-white shadow">
                     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
+                        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                            {{ $title }}
+                        </h2>
                     </div>
-                </header>
+                </div>
             @endif
 
             <!-- Page Content -->
             <main>
-                {{ $slot }}
+                <div class="py-10">
+                    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                        {{ $slot }}
+                    </div>
+                </div>
             </main>
+
         </div>
     </body>
 </html>
