@@ -3,4 +3,4 @@
     $randpic = $pics[rand(0, (count($pics)-1))];
 @endphp
 
-<img src="/{{ $randpic }}">
+<img title="Gezeichnet von Noah Jung" class="rand-pic" src="/{{ $randpic }}">

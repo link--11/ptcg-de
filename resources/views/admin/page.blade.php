@@ -19,7 +19,7 @@
 
                 <div>
                     <x-input-label for="content" value="Inhalt" />
-                    <textarea id="content" name="content" :value="$page->content" rows=20 class="input">{{ $page->content }}</textarea>
+                    <textarea id="content" name="content" :value="$page->content" rows=20 class="mt-1 input">{{ $page->content }}</textarea>
                 </div>
 
                 <div class="flex items-center gap-4">

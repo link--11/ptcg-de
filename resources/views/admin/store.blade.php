@@ -29,14 +29,15 @@
                     </div>
                 </div>
 
-                <div>
-                    <x-input-label for="email" value="Email" />
-                    <x-text-input :value="$store->email" id="email" name="email" type="text" class="mt-1 block w-full" />
-                </div>
-
-                <div>
-                    <x-input-label for="phone" value="Telefon" />
-                    <x-text-input :value="$store->phone" id="phone" name="phone" type="text" class="mt-1 block w-full" />
+                <div class="flex gap-3">
+                    <div class="flex-1">
+                        <x-input-label for="email" value="Email" />
+                        <x-text-input :value="$store->email" id="email" name="email" type="text" class="mt-1 block w-full" />
+                    </div>
+                    <div class="flex-1">
+                        <x-input-label for="phone" value="Telefon" />
+                        <x-text-input :value="$store->phone" id="phone" name="phone" type="text" class="mt-1 block w-full" />
+                    </div>
                 </div>
 
                 <div>
@@ -49,6 +50,11 @@
                 <div>
                     <x-input-label for="league" value="Liga" />
                     <x-text-input :value="$store->league" id="league" name="league" type="text" class="mt-1 block w-full" />
+                </div>
+
+                <div>
+                    <x-input-label for="notes" value="Zusätzliche Informationen" />
+                    <textarea id="notes" name="notes" :value="$store->notes" rows=4 class="mt-1 input">{{ $store->notes }}</textarea>
                 </div>
 
                 <div class="flex items-center gap-4">

@@ -12,7 +12,7 @@ class Store extends Model
     protected $fillable = [
         'name', 'address', 'zip_code', 'city',
         'email', 'phone', 'website',
-        'league'
+        'league', 'notes'
     ];
 
     public function tournaments () {

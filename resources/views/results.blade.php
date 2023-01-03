@@ -1,5 +1,7 @@
 @extends('layout')
 
+@section('title', 'Ligen & Spielorte')
+
 @section('content')
 
 <div class="banner">
