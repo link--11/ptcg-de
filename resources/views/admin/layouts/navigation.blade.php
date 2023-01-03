@@ -13,12 +13,17 @@
                     <x-nav-link :href="route('admin.stores')" :active="request()->routeIs('admin.stores')">
                         Stores
                     </x-nav-link>
-                    <x-nav-link :href="route('admin.users')" :active="request()->routeIs('admin.users')">
-                        User
+                    <x-nav-link :href="route('admin.tournaments')" :active="request()->routeIs('admin.tournaments')">
+                        Turniere
                     </x-nav-link>
-                    <x-nav-link :href="route('admin.pages')" :active="request()->routeIs('admin.pages')">
-                        Inhalte
-                    </x-nav-link>
+                    @if (Auth::user()->admin)
+                        <x-nav-link :href="route('admin.users')" :active="request()->routeIs('admin.users')">
+                            User
+                        </x-nav-link>
+                        <x-nav-link :href="route('admin.pages')" :active="request()->routeIs('admin.pages')">
+                            Inhalte
+                        </x-nav-link>
+                    @endif
                 </div>
             </div>
 
@@ -71,9 +76,20 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+            <x-responsive-nav-link :href="route('admin.stores')" :active="request()->routeIs('admin.stores')">
+                Stores
             </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('admin.tournaments')" :active="request()->routeIs('admin.tournaments')">
+                Turniere
+            </x-responsive-nav-link>
+            @if (Auth::user()->admin)
+                <x-responsive-nav-link :href="route('admin.users')" :active="request()->routeIs('admin.users')">
+                    User
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('admin.pages')" :active="request()->routeIs('admin.pages')">
+                    Inhalte
+                </x-responsive-nav-link>
+            @endif
         </div>
 
         <!-- Responsive Settings Options -->

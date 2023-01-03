@@ -8,7 +8,7 @@ export default defineConfig({
                 'resources/styles/main.sass',
                 'resources/styles/tailwind.css',
                 'resources/scripts/main.js',
-                'resources/scripts/alpine.js'
+                'resources/scripts/admin.js'
             ],
             refresh: true,
         }),

@@ -1,7 +1,7 @@
 <x-admin-layout title="Inhalte">
 
     <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-        <div class="p-6 text-gray-900">
+        <div class="p-5 text-gray-900">
 
             <x-primary-button x-data=""
                 x-on:click.prevent="$dispatch('open-modal', 'add-new-page')">Inhalt hinzufügen</x-primary-button>

@@ -19,7 +19,6 @@ class PageController extends Controller
         ]);
     }
 
-    // @todo ADMIN ONLY
     public function create(Request $request) {
 
         $page = Page::create([
@@ -45,6 +44,13 @@ class PageController extends Controller
 
         return Redirect::route('admin.page', [ 'id' => $page->id ])
             ->with('status', 'page-updated');
+    }
+
+    public function destroy(Request $request) {
+        $page = Page::find($request->route('id'));
+        $page->delete();
+
+        return Redirect::route('admin.pages')->with('status', 'page-deleted');
     }
 
 }

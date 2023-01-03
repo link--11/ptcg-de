@@ -19,7 +19,7 @@
 
                 <div>
                     <x-input-label for="content" value="Inhalt" />
-                    <textarea id="content" name="content" :value="$page->content" rows=20 class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">{{ $page->content }}</textarea>
+                    <textarea id="content" name="content" :value="$page->content" rows=20 class="input">{{ $page->content }}</textarea>
                 </div>
 
                 <div class="flex items-center gap-4">
@@ -38,6 +38,35 @@
             </form>
 
         </div>
-
     </div>
+
+    <div class="p-6 bg-white shadow sm:rounded-lg">
+        <div class="max-w-xl">
+            <x-danger-button
+                x-data="" x-on:click.prevent="$dispatch('open-modal', 'confirm-page-deletion')"
+            >Inhalt löschen</x-danger-button>
+
+            <x-modal name="confirm-page-deletion" focusable>
+                <form method="post" action="{{ route('admin.page.delete', [ 'id' => $page->id ]) }}" class="p-6">
+                    @csrf
+                    @method('delete')
+
+                    <h2 class="text-lg font-medium text-gray-900">
+                        Bist du sicher diesen Inhalt löschen zu wollen?
+                    </h2>
+
+                    <div class="mt-6 flex justify-end">
+                        <x-secondary-button x-on:click="$dispatch('close')">
+                            {{ __('Cancel') }}
+                        </x-secondary-button>
+
+                        <x-danger-button class="ml-3">
+                            Inhalt löschen
+                        </x-danger-button>
+                    </div>
+                </form>
+            </x-modal>
+        </div>
+    </div>
+
 </x-admin-layout>

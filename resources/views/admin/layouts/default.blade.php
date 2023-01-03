@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
 
         <!-- Scripts -->
-        @vite(['resources/styles/tailwind.css', 'resources/scripts/alpine.js'])
+        @vite(['resources/styles/tailwind.css', 'resources/scripts/admin.js'])
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
@@ -31,7 +31,7 @@
             <!-- Page Content -->
             <main>
                 <div class="py-10">
-                    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                    <div class="flex flex-col gap-4 max-w-7xl mx-auto sm:px-6 lg:px-8">
                         {{ $slot }}
                     </div>
                 </div>
