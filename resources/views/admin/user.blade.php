@@ -29,6 +29,72 @@
             </form>
 
         </div>
+    </div>
+
+    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+        <h2 class="font-bold text-xl p-4">Storezugriff</h2>
+        <div class="px-6 text-gray-900">
+            <ul>
+                @foreach ($user->stores as $store)
+                    <li><a href="/admin/stores/{{ $store->id }}">{{ $store->name }} {{ $store->city }}</a></li>
+                @endforeach
+            </ul>
+
+        </div>
+
+        <div class="p-6">
+            <x-primary-button x-data=""
+                x-on:click.prevent="$dispatch('open-modal', 'attach-store')">Store hinzufügen</x-primary-button>
+
+            <x-primary-button x-data=""
+                x-on:click.prevent="$dispatch('open-modal', 'detach-store')">Store entfernen</x-primary-button>
+
+            <x-modal name="attach-store" focusable>
+                <form method="post" action="{{ route('admin.user.attach', [ 'id' => $user->id ]) }}" class="p-6 flex flex-col gap-3">
+                    @csrf
+
+                    <div>
+                        <x-input-label for="store_id_1" value="Store" />
+                        <x-selection id="store_id_1" name="store_id" class="mt-1 block w-full">
+                            @foreach ($stores as $store)
+                                <option value="{{ $store->id }}">{{ $store->name }} {{ $store->city }}</option>
+                            @endforeach
+                        </x-selection>
+                    </div>
+
+                    <div class="mt-2 flex gap-2 justify-end">
+                        <x-secondary-button x-on:click="$dispatch('close')">
+                            {{ __('Cancel') }}
+                        </x-secondary-button>
+
+                        <x-primary-button>Store hinzufügen</x-primary-button>
+                    </div>
+                </form>
+            </x-modal>
+
+            <x-modal name="detach-store" focusable>
+                <form method="post" action="{{ route('admin.user.detach', [ 'id' => $user->id ]) }}" class="p-6 flex flex-col gap-3">
+                    @csrf
+
+                    <div>
+                        <x-input-label for="store_id_2" value="Store" />
+                        <x-selection id="store_id_2" name="store_id" class="mt-1 block w-full">
+                            @foreach ($user->stores as $store)
+                                <option value="{{ $store->id }}">{{ $store->name }} {{ $store->city }}</option>
+                            @endforeach
+                        </x-selection>
+                    </div>
+
+                    <div class="mt-2 flex gap-2 justify-end">
+                        <x-secondary-button x-on:click="$dispatch('close')">
+                            {{ __('Cancel') }}
+                        </x-secondary-button>
+
+                        <x-primary-button>Store entfernen</x-primary-button>
+                    </div>
+                </form>
+            </x-modal>
+        </div>
 
     </div>
 

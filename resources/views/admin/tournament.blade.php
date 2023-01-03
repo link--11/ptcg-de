@@ -12,7 +12,20 @@
                     <input value="{{ $tournament->date }}" id="date" name="date" type="datetime-local" class="input mt-1 block w-full">
                 </div>
 
-                <x-tournament-selection :selected="$tournament->type" />
+                <div class="flex gap-3">
+                    <div class="flex-1">
+                        <x-tournament-selection :selected="$tournament->type" />
+                    </div>
+                    <div class="flex-1">
+                        <x-input-label for="format" value="Format" />
+                        <x-selection id="format" name="format" class="mt-1 block w-full">
+                            <option value=""></option>
+                            <option value="standard" {{ $tournament->format === 'standard' ? 'selected' : '' }}>{{ __('pokemon.standard') }}</option>
+                            <option value="expanded" {{ $tournament->format === 'expanded' ? 'selected' : '' }}>{{ __('pokemon.expanded') }}</option>
+                            <option value="glc" {{ $tournament->format === 'glc' ? 'selected' : '' }}>{{ __('pokemon.glc') }}</option>
+                        </x-selection>
+                    </div>
+                </div>
 
                 <div class="flex gap-3">
                     <div class="flex-1">
@@ -70,6 +83,35 @@
                 @php $i++ @endphp
             @endforeach
         </table>
-
     </div>
+
+    <div class="mt-6 p-6 bg-white shadow sm:rounded-lg">
+        <div class="max-w-xl">
+            <x-danger-button
+                x-data="" x-on:click.prevent="$dispatch('open-modal', 'confirm-tournament-deletion')"
+            >Turnier löschen</x-danger-button>
+
+            <x-modal name="confirm-tournament-deletion" focusable>
+                <form method="post" action="{{ route('admin.tournament.delete', [ 'id' => $tournament->id ]) }}" class="p-6">
+                    @csrf
+                    @method('delete')
+
+                    <h2 class="text-lg font-medium text-gray-900">
+                        Bist du sicher dieses Turnier löschen zu wollen?
+                    </h2>
+
+                    <div class="mt-6 flex justify-end">
+                        <x-secondary-button x-on:click="$dispatch('close')">
+                            {{ __('Cancel') }}
+                        </x-secondary-button>
+
+                        <x-danger-button class="ml-3">
+                            Turnier löschen
+                        </x-danger-button>
+                    </div>
+                </form>
+            </x-modal>
+        </div>
+    </div>
+
 </x-admin-layout>

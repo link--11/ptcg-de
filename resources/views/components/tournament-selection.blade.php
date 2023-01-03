@@ -6,5 +6,6 @@
         <option value="prerelease" {{ $selected === 'prerelease' ? 'selected' : '' }}>{{ __('pokemon.prerelease') }}</option>
         <option value="challenge" {{ $selected === 'challenge' ? 'selected' : '' }}>{{ __('pokemon.challenge') }}</option>
         <option value="cup" {{ $selected === 'cup' ? 'selected' : '' }}>{{ __('pokemon.cup') }}</option>
+        <option value="locals" {{ $selected === 'locals' ? 'selected' : '' }}>{{ __('pokemon.locals') }}</option>
     </x-selection>
 </div>

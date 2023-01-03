@@ -38,6 +38,7 @@ Route::group([ 'prefix' => 'admin', 'middleware' => [ 'auth' ], 'as' => 'admin.'
     Route::post('/tournaments', [TournamentController::class, 'create'])->name('tournaments.create');
     Route::get('/tournaments/{id}', [TournamentController::class, 'tournament'])->name('tournament');
     Route::patch('/tournaments/{id}', [TournamentController::class, 'update'])->name('tournament.update');
+    Route::delete('/tournaments/{id}', [TournamentController::class, 'destroy'])->name('tournament.delete');
 
     Route::middleware('admin')->group(function () {
         Route::post('/stores', [StoreController::class, 'create'])->name('stores.create');
@@ -46,6 +47,8 @@ Route::group([ 'prefix' => 'admin', 'middleware' => [ 'auth' ], 'as' => 'admin.'
         Route::post('/users', [UserController::class, 'create'])->name('users.create');
         Route::get('/users/{id}', [UserController::class, 'user'])->name('user');
         Route::patch('/users/{id}', [UserController::class, 'update'])->name('user.update');
+        Route::post('/users/{id}/attach', [UserController::class, 'attach'])->name('user.attach');
+        Route::post('/users/{id}/detach', [UserController::class, 'detach'])->name('user.detach');
 
         Route::get('/pages', [PageController::class, 'pages'])->name('pages');
         Route::post('/pages', [PageController::class, 'create'])->name('pages.create');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Store;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -39,8 +40,12 @@ class UserController extends Controller
     public function user(Request $request) {
         $user = User::find($request->route('id'));
 
+        $user_stores = $user->stores->map(fn ($store) => $store->id)->all();
+        $stores = Store::all()->filter(fn ($store) => !in_array($store->id, $user_stores));
+
         return view('admin.user', [
-            'user' => $user
+            'user' => $user,
+            'stores' => $stores
         ]);
     }
 
@@ -52,6 +57,24 @@ class UserController extends Controller
 
         return Redirect::route('admin.user', [ 'id' => $user->id ])
             ->with('status', 'user-updated');
+    }
+
+    public function attach(Request $request) {
+        $user = User::find($request->route('id'));
+
+        $user->stores()->attach($request->input('store_id'));
+
+        return Redirect::route('admin.user', [ 'id' => $user->id ])
+                    ->with('status', 'stores-updated');
+    }
+
+    public function detach(Request $request) {
+        $user = User::find($request->route('id'));
+
+        $user->stores()->detach($request->input('store_id'));
+
+        return Redirect::route('admin.user', [ 'id' => $user->id ])
+                    ->with('status', 'stores-updated');
     }
 
     // public function destroy(Request $request) {

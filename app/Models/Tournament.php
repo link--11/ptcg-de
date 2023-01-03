@@ -10,7 +10,7 @@ class Tournament extends Model
     use HasFactory;
 
     protected $fillable = [
-        'store_id', 'date', 'type',
+        'store_id', 'date', 'type', 'format',
         'cost', 'cap', 'notes',
         'locator_id'
     ];
@@ -22,5 +22,11 @@ class Tournament extends Model
     public function registrations()
     {
         return $this->hasMany(Registration::class);
+    }
+
+    public function delete()
+    {
+        $this->registrations()->delete();
+        return parent::delete();
     }
 }
