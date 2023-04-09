@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\StoreController;
 use App\Http\Controllers\Admin\TournamentController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\ActionController;
 use App\Http\Controllers\DataController;
 use App\Models\Page;
 use Illuminate\Http\Request;
@@ -24,9 +25,13 @@ use Illuminate\Support\Facades\Route;
 Route::view('/', 'home');
 
 Route::get('/ligen', [DataController::class, 'stores'])->name('stores');
+
 Route::get('/turniere', [DataController::class, 'tournaments'])->name('tournaments');
-Route::get('/anmeldung', [DataController::class, 'registration'])->name('registration');
+Route::get('/turniere/{id}', [DataController::class, 'tournament'])->name('tournament');
+
 Route::get('/ergebnisse', [DataController::class, 'results'])->name('results');
+
+Route::post('/anmeldung', [ActionController::class, 'register'])->name('register');
 
 Route::group([ 'prefix' => 'xyz', 'middleware' => [ 'auth' ] ],function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

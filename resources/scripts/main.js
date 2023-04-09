@@ -1,4 +1,5 @@
-import { c } from './util/dom.js'
+import { c, $$ } from './util/dom.js'
+import { activate } from './util/tables.js'
 
 c('header', $header => {
 
@@ -36,5 +37,9 @@ c('header', $header => {
         }
     }
 
-    //$nav.addEventListener('focusout', loseFocusListener)
+    $nav.addEventListener('focusout', loseFocusListener)
+})
+
+$$('.data-table').forEach($table => {
+    activate($table)
 })

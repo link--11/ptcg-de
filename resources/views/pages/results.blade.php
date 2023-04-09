@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', 'Ligen & Spielorte')
+@section('title', 'Turnierergebnisse')
 
 @section('content')
 

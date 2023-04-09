@@ -10,3 +10,14 @@
     display: flex
     flex-direction: column
     gap: $gap
+
+@mixin take-full-width
+    // 100vw interacts weirdly with a vertical scrollbar so can't be used instead
+    width: calc(100% + 2 * #{$container-margin})
+    margin-right: -10px
+    margin-left: -10px
+
+    @media (min-width: ($container-width + 2 * $container-margin))
+        width: 100%
+        margin-right: 0
+        margin-left: 0

@@ -1,0 +1,84 @@
+table
+    border-spacing: 0
+
+    &.striped
+        tr:nth-of-type(even)
+            background-color: var(--bg-color-two)
+
+    &.highlight
+        tr:hover
+            td
+                background-color: rgba(190,160,0,0.05)
+
+        &.striped
+            tr:nth-of-type(even):hover
+                td
+                    background-color: rgba(190,160,0,0.08)
+
+    &.data-table
+        width: 100%
+        +take-full-width
+        margin-bottom: 25px
+
+        th
+            padding: 8px 0
+            text-align: left
+            border-bottom: 2px solid var(--text-color)
+            font-weight: 600
+
+            &.sub-heading
+                font-size: 0.9em
+                padding: 10px
+                background-color: var(--panel-color)
+                border: 0
+
+            &.sort
+                cursor: pointer
+                position: relative
+
+                &:hover
+                    border-bottom: 2px dotted
+
+                &:hover::after
+                    content: "\f0dc"
+                    font-family: "Font Awesome 5 Free"
+                    position: absolute
+                    transform: translate(0,-50%)
+                    right: 10px
+                    top: 50%
+
+                &.center:hover::after
+                    position: static
+                    transform: none
+                    display: inline-block
+                    width: 100%
+                    text-align: center
+
+        td
+            height: 40px
+
+        th:first-child, td:first-child
+            padding-left: 10px
+
+        th:last-child, td:last-child
+            padding-right: 10px
+
+        a
+            display: flex
+            height: 100%
+            align-items: center
+            gap: 5px
+
+            &:hover
+                color: var(--link-color-blue)
+
+            &.inline
+                display: inline-block
+                height: auto
+
+    &.center
+        th, td
+            text-align: center
+
+        td a
+            justify-content: center

@@ -65,6 +65,8 @@ header
             height: 1.5rem
 
     .links
+        background-color: var(--bg-color)
+        border-top: 2px solid #4d4d4d
         position: absolute
         width: 100%
         top: 100%
@@ -95,7 +97,6 @@ header
         display: flex
         align-items: center
 
-
         li:hover, li.active
             border-bottom-color: var(--accent-color)
 
@@ -106,6 +107,7 @@ header
             display: none
 
         .links
+            border: none
             position: static
             width: auto
             display: flex
@@ -115,8 +117,8 @@ header
     .sub-category
 
         .sub-menu
-            padding-left: 20px
             background-color: var(--bg-color)
+            padding-left: 20px
 
             li
                 font-size: 18px

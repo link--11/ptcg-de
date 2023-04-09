@@ -1,0 +1,66 @@
+@mixin sticky-label($top)
+    position: absolute
+    padding: 0 5px
+    color: var(--text-color)
+    background-color: var(--bg-color)
+    top: $top
+    left: 10px
+    z-index: 1
+
+.registration-form
+    max-width: 500px
+    display: flex
+    flex-flow: column nowrap
+
+    .row
+        position: relative
+        padding: 10px 0
+        margin-bottom: 5px
+        display: flex
+        flex-flow: row nowrap
+
+        label
+            +sticky-label(0)
+
+        input, select
+            color-scheme: dark
+            display: block
+            box-sizing: border-box
+            padding: 12px
+            color: var(--text-color)
+            background-color: var(--bg-color-two)
+            border: 1px solid var(--text-color)
+            border-radius: 5px
+            width: 100%
+
+        .split
+            position: relative
+            width: 100%
+            margin-right: 10px
+
+            &:last-of-type
+                margin-right: 0
+
+            label
+                top: -10px
+
+    hr
+        width: 10%
+
+    .radio-group
+        position: relative
+        padding: 12px
+        border: 1px solid var(--text-color)
+        border-radius: 5px
+        margin-top: 10px
+        margin-bottom: 5px
+
+        .legend
+            +sticky-label(-12px)
+
+    .radio
+        margin-bottom: 3px
+
+        label
+            cursor: pointer
+            margin-left: 5px

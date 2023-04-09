@@ -8,7 +8,7 @@
 
         <nav class="site-nav resp-nav" data-site-nav>
             <button class="nav-toggle">
-                <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                <svg class="w-6 h-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                     <path data-open class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                     <path data-close class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
@@ -16,13 +16,9 @@
 
             <ul class="links">
                 <li><a href="/ligen">Ligen</a></li>
-                <li class="sub-category">
-                    <a href="/turniere">Turniere</a>
-                    <ul class="sub-menu">
-                        <li><a href="/anmeldung">Anmeldung</a></li>
-                    </ul>
-                </li>
+                <li><a href="/turniere">Turniere</a></li>
                 <li><a href="/ergebnisse">Ergebnisse</a></li>
+                <li><a href="/ressourcen">Ressourcen</a></li>
             </ul>
         </nav>
 

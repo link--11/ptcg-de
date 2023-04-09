@@ -1,6 +1,6 @@
 <x-admin-layout :title="'Turniere > ' . $store->name . ' ' .  __('pokemon.' . $tournament->type)">
 
-    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+    <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
         <div class="p-6 text-gray-900">
 
             <form method="post" action="{{ route('admin.tournament.update', [ 'id' => $tournament->id ]) }}" class="flex flex-col gap-4">
@@ -9,7 +9,7 @@
 
                 <div>
                     <x-input-label for="date" value="Datum & Zeit" />
-                    <input value="{{ $tournament->date }}" id="date" name="date" type="datetime-local" class="input mt-1 block w-full">
+                    <input value="{{ $tournament->date }}" id="date" name="date" type="datetime-local" step=900 class="block w-full mt-1 input">
                 </div>
 
                 <div class="flex gap-3">
@@ -18,7 +18,7 @@
                     </div>
                     <div class="flex-1">
                         <x-input-label for="format" value="Format" />
-                        <x-selection id="format" name="format" class="mt-1 block w-full">
+                        <x-selection id="format" name="format" class="block w-full mt-1">
                             <option value=""></option>
                             <option value="standard" {{ $tournament->format === 'standard' ? 'selected' : '' }}>{{ __('pokemon.standard') }}</option>
                             <option value="expanded" {{ $tournament->format === 'expanded' ? 'selected' : '' }}>{{ __('pokemon.expanded') }}</option>
@@ -30,11 +30,11 @@
                 <div class="flex gap-3">
                     <div class="flex-1">
                         <x-input-label for="cost" value="Teilnahme in €" />
-                        <x-text-input :value="$tournament->cost" id="cost" name="cost" type="number" class="mt-1 block w-full" />
+                        <x-text-input :value="$tournament->cost" id="cost" name="cost" type="number" class="block w-full mt-1" />
                     </div>
                     <div class="flex-1">
                         <x-input-label for="cap" value="Max. Teilnehmer" />
-                        <x-text-input :value="$tournament->cap" id="cap" name="cap" type="number" class="mt-1 block w-full" />
+                        <x-text-input :value="$tournament->cap" id="cap" name="cap" type="number" class="block w-full mt-1" />
                     </div>
                 </div>
 
@@ -61,14 +61,14 @@
         </div>
     </div>
 
-    <div class="mt-6 bg-white overflow-hidden shadow-sm sm:rounded-lg">
-        <h2 class="font-bold text-xl p-4">Anmeldeliste</h2>
+    <div class="mt-6 overflow-hidden bg-white shadow-sm sm:rounded-lg">
+        <h2 class="p-4 text-xl font-bold">Anmeldeliste</h2>
         <table class="w-full">
             <tr>
                 <th>#</th>
                 <th>Name</th>
                 <th>Player ID</th>
-                <th>Division</th>
+                <th>Geburtsdatum</th>
             </tr>
 
             @php $i = 1 @endphp
@@ -77,7 +77,7 @@
                     <td>{{ $i }}</td>
                     <td>{{ $player->name }}</td>
                     <td>{{ $player->playerid }}</td>
-                    <td>{{ $player->division }}</td>
+                    <td>{{ $player->birthdate }}</td>
                 </tr>
 
                 @php $i++ @endphp
@@ -85,7 +85,7 @@
         </table>
     </div>
 
-    <div class="mt-6 p-6 bg-white shadow sm:rounded-lg">
+    <div class="p-6 mt-6 bg-white shadow sm:rounded-lg">
         <div class="max-w-xl">
             <x-danger-button
                 x-data="" x-on:click.prevent="$dispatch('open-modal', 'confirm-tournament-deletion')"
@@ -100,7 +100,7 @@
                         Bist du sicher dieses Turnier löschen zu wollen?
                     </h2>
 
-                    <div class="mt-6 flex justify-end">
+                    <div class="flex justify-end mt-6">
                         <x-secondary-button x-on:click="$dispatch('close')">
                             {{ __('Cancel') }}
                         </x-secondary-button>
