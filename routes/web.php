@@ -79,5 +79,5 @@ Route::get('/{slug}', function (Request $request) {
 
     if (!$page) abort(404);
 
-    return view('/page', [ 'page' => $page ]);
+    return view('pages.page', [ 'page' => $page ]);
 });
