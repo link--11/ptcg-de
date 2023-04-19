@@ -52,4 +52,12 @@ class DataController extends Controller
 
         ]);
     }
+
+    public function home () {
+        $upcoming = Tournament::where('date', '>', now())->orderBy('date')->take(5)->get();
+
+        return view('home', [
+            'upcoming' => $upcoming
+        ]);
+    }
 }

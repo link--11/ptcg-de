@@ -22,11 +22,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/', 'home');
-
+Route::get('/', [DataController::class, 'home'])->name('home');
 Route::get('/ligen', [DataController::class, 'stores'])->name('stores');
 Route::get('/ligen/{id}', [DataController::class, 'store'])->name('store');
-
 Route::get('/turniere', [DataController::class, 'tournaments'])->name('tournaments');
 Route::get('/turniere/{id}', [DataController::class, 'tournament'])->name('tournament');
 

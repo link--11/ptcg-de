@@ -4,7 +4,7 @@
             <img src="/pichu_small.png" alt="PTCG DE">
         </a>
 
-        <div class="site-name">PTCG DE</div>
+        <div class="site-name">Play! Pokémon NRW</div>
 
         <nav class="site-nav resp-nav" data-site-nav>
             <button class="nav-toggle">
@@ -23,6 +23,6 @@
             </ul>
         </nav>
 
-        <x-random-pic />
+        {{-- <x-random-pic /> --}}
     </div>
 </header>

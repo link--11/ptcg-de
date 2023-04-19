@@ -9,7 +9,7 @@
     @vite('resources/scripts/registration.js')
 @endsection
 
-<h2>{{ __("pokemon.$tournament->type") }} {{ $tournament->store->city }}</h2>
+<h1>{{ __("pokemon.$tournament->type") }} {{ $tournament->store->city }}</h1>
 
 <div class="tournament-info">
     <table class="info-table">
@@ -55,8 +55,6 @@
         <label for="name">Email</label>
         <input type="email" id="email" name="email" required>
     </div>
-
-    <hr>
 
     <div class="row">
         <div class="split">

@@ -31,6 +31,6 @@ $registrationForm.addEventListener('submit', e => {
     post(`/anmeldung`, { _token, data }, (res) => {
         waiting = false
         $registrationForm.reset()
-        updateResponse('Anmeldung erfolgreich!', true)
+        updateResponse('Anmeldung gesendet!', true)
     })
 })
