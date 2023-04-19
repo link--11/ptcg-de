@@ -27,7 +27,7 @@
         <meta property="og:description" content="{{ $page_desc }}">
         <meta property="og:image" content="{{ $page_image }}">
         <meta property="og:type" content="{{ $page_type }}">
-        <meta property="og:site_name" content="PTCG DE">
+        <meta property="og:site_name" content="Play! Pokémon Rhein-Ruhr">
     @show
 
     @section('meta.twitter')

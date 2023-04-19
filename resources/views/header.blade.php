@@ -19,7 +19,7 @@
                 <li><a href="/turniere">Turniere</a></li>
                 <li><a href="/ergebnisse">Ergebnisse</a></li>
                 <li><a href="/ressourcen">Ressourcen</a></li>
-                <li><a target="_blank" href="/">Discord</a></li>
+                <li><a target="_blank" href="http://discord.gg/3dKHst4HnB">Discord</a></li>
             </ul>
         </nav>
 
