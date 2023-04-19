@@ -66,7 +66,8 @@
         <table class="w-full">
             <tr>
                 <th>#</th>
-                <th>Name</th>
+                <th>Vorname</th>
+                <th>Nachname</th>
                 <th>Player ID</th>
                 <th>Geburtsdatum</th>
             </tr>
@@ -75,7 +76,8 @@
             @foreach ($registrations as $player)
                 <tr>
                     <td>{{ $i }}</td>
-                    <td>{{ $player->name }}</td>
+                    <td>{{ $player->first_name }}</td>
+                    <td>{{ $player->last_name }}</td>
                     <td>{{ $player->playerid }}</td>
                     <td>{{ $player->birthdate }}</td>
                 </tr>

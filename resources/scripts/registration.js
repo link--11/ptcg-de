@@ -22,7 +22,8 @@ $registrationForm.addEventListener('submit', e => {
     const data = {
         tournament_id: $registrationForm.dataset.id,
         email: $('input[name=email]').value,
-        name: $('input[name=name]').value,
+        first_name: $('input[name=first_name]').value,
+        last_name: $('input[name=last_name]').value,
         playerid: $('input[name=id]').value,
         birthdate: $('input[name=bd]').value,
     }

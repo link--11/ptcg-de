@@ -30,9 +30,10 @@ function send_email ($data, $tournament, $to) {
     $type = __("pokemon.$tournament->type");
     $date = date_only($tournament->date);
 
-    $subject = "Anmeldung $type $date - $data[name]";
+    $subject = "Anmeldung $type $date - $data[first_name] $data[last_name]";
 
-    $message = "Name: $data[name]\n";
+    $message = "Vorname: $data[first_name]\n";
+    $message .= "Nachname: $data[last_name]\n";
     $message .= "Player ID: $data[playerid]\n";
     $message .= "Geburtsdatum: $data[birthdate]\n";
     $message .= "Email: $data[email]\n";

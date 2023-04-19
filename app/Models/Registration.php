@@ -11,7 +11,7 @@ class Registration extends Model
     use HasFactory;
 
     protected $fillable = [
-        'tournament_id', 'name',
+        'tournament_id', 'first_name', 'last_name',
         'playerid', 'birthdate', 'email'
     ];
 
