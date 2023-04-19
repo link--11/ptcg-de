@@ -2,7 +2,7 @@
 <html lang="de">
 
 @php
-    $fallback_title = 'Pokémon Organized Play Deutschland';
+    $fallback_title = 'Play! Pokémon Rhein-Ruhr';
     $fallback_desc = $fallback_desc ?? '';
     $fallback_image = URL::to('/images/preview.png');
 
@@ -10,7 +10,7 @@
         return trim(htmlspecialchars_decode(View::yieldContent($section, $fallback), ENT_QUOTES));
     };
 
-    $page_title = $yield('title', $fallback_title) . ' – PTCG DE';
+    $page_title = $yield('title', $fallback_title) . ' – PP RR';
     $page_desc = $yield('description', $fallback_desc);
     $page_image = $yield('image', $fallback_image);
     $page_type = $yield('type', 'website');

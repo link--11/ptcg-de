@@ -1,6 +1,6 @@
 <x-admin-layout title="Stores">
 
-    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+    <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
         @if ($user->admin)
             <div class="p-5 text-gray-900">
 
@@ -13,11 +13,11 @@
 
                         <div>
                             <x-input-label for="name" :value="__('Name')" />
-                            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" required autofocus />
+                            <x-text-input id="name" name="name" type="text" class="block w-full mt-1" required autofocus />
                             <x-input-error class="mt-2" :messages="$errors->get('name')" />
                         </div>
 
-                        <div class="mt-6 flex gap-2 justify-end">
+                        <div class="flex justify-end gap-2 mt-6">
                             <x-secondary-button x-on:click="$dispatch('close')">
                                 {{ __('Cancel') }}
                             </x-secondary-button>
@@ -41,7 +41,7 @@
                 <tr>
                     <td><a href="{{ route('admin.store', [ 'id' => $store->id ]) }}">{{ $store->name }}</a></td>
                     <td><a href="{{ route('admin.store', [ 'id' => $store->id ]) }}">{{ $store->city }}</a></td>
-                    <td>{{ $store->league ? "✅" : "❌"}}</td>
+                    <td>{{ $store->league ? "✅" : "❌" }}</td>
                 </tr>
 
             @endforeach

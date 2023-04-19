@@ -9,15 +9,38 @@
     @vite('resources/scripts/registration.js')
 @endsection
 
-<ul>
-    <li>{{ __("pokemon.$tournament->type") }}</li>
-    <li>{{ $tournament->store->name}} {{ $tournament->store->city }}</li>
-    <li>{{ $tournament->date }}</li>
-    <li>Format: {{ __("pokemon.$tournament->format") }}</li>
-    @if ($tournament->cap) <li>Max. {{ $tournament->cap }} Plätze</li> @endif
-    @if ($tournament->cost)<li>Anmeldegebühr: {{ $tournament->cost }}€</li> @endif
-    @if ($tournament->notes) <li>{{ $tournament->notes }}</li> @endif
-</ul>
+<h2>{{ __("pokemon.$tournament->type") }} {{ $tournament->store->city }}</h2>
+
+<div class="tournament-info">
+    <table class="info-table">
+        <tr>
+            <td>Wo?</td>
+            <td><a href="{{ route('store', [ 'id' => $tournament->store->id ]) }}">{{ $tournament->store->name}} {{ $tournament->store->city }}</a></td>
+        </tr>
+        <tr>
+            <td>Wann?</td>
+            <td>{{ full_date($tournament->date) }}</td>
+        </tr>
+        @if ($tournament->format)
+            <tr>
+                <td>Format</td>
+                <td>{{ __("pokemon.$tournament->format") }}</td>
+            </tr>
+        @endif
+        @if ($tournament->cap || $tournament->cost)
+            <tr>
+                <td>Anmeldung</td>
+                <td>
+                    @if ($tournament->cost) {{ $tournament->cost }}€ @endif
+                    @if ($tournament->cap && $tournament->cost) - @endif
+                    @if ($tournament->cap) Max. {{ $tournament->cap }} Plätze @endif
+                </td>
+            </tr>
+        @endif
+    </table>
+
+    @if ($tournament->notes) <p>{{ $tournament->notes }}</p> @endif
+</div>
 
 <h2>Anmeldeformular</h2>
 
@@ -36,8 +59,14 @@
     <hr>
 
     <div class="row">
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name" required>
+        <div class="split">
+            <label for="first_name">Vorname</label>
+            <input id="first_name" name="first_name" type="text" required>
+        </div>
+        <div class="split">
+            <label for="last_name">Nachname</label>
+            <input id="last_name" name="last_name" type="text">
+        </div>
     </div>
     <div class="row">
         <div class="split">

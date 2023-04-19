@@ -33,6 +33,19 @@ class DataController extends Controller
         ]);
     }
 
+    public function store (Request $request) {
+        $id = $request->route('id');
+        $store = Store::find($id);
+        $tournaments = Tournament::where('date', '>', now())
+            ->where('store_id', $id)
+            ->get()->sortBy('date');
+
+        return view('pages.store', [
+            'store' => $store,
+            'tournaments' => $tournaments
+        ]);
+    }
+
     public function results () {
 
         return view('pages.results', [

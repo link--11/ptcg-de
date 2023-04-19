@@ -4,6 +4,8 @@
 
 @section('content')
 
+<p>Auf dieser Seite findest du alle bevorstehenden Turniere in der Region.</p>
+
 <table class="data-table striped">
     <tr>
         <th class="sort" data-sort="date">Datum</th>
@@ -15,7 +17,7 @@
 
             <td><a href="{{ route('tournament', [ 'id' => $row->id ]) }}">{{ full_date($row->date) }}</a></td>
             <td><a href="{{ route('tournament', [ 'id' => $row->id ]) }}">{{ __("pokemon.$row->type") }}</a></td>
-            <td><a href="{{ route('tournament', [ 'id' => $row->id ]) }}">{{ $row->store->name }} {{ $row->store->city }}</a></td>
+            <td><a href="{{ route('store', [ 'id' => $row->store->id ]) }}">{{ $row->store->name }} {{ $row->store->city }}</a></td>
         </tr>
     @endforeach
 </table>

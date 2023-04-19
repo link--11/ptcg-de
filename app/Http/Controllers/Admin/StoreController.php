@@ -84,4 +84,25 @@ class StoreController extends Controller
         return Redirect::route('admin.stores')->with('status', 'store-deleted');
     }
 
+    public function upload(Request $request) {
+        list($allowed, $store) = $this->checkAuthorization($request);
+        if (!$allowed) abort(403);
+
+        $id = uniqid();
+
+        $file_type = strtolower(pathinfo($_FILES["fileToUpload"]["name"], PATHINFO_EXTENSION));
+
+        $dir = public_path() . "/upload/stores/$store->id";
+        if (!is_dir($dir)) mkdir($dir);
+        $file = "$dir/$id.$file_type";
+
+        move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $file);
+
+        $store->picture = "$id.$file_type";
+        $store->save();
+
+        return Redirect::route('admin.store', [ 'id' => $store->id ])
+            ->with('status', 'pic-updated');
+    }
+
 }

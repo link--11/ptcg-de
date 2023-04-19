@@ -8,7 +8,8 @@ export default defineConfig({
                 'resources/styles/main.sass',
                 'resources/styles/tailwind.css',
                 'resources/scripts/main.js',
-                'resources/scripts/admin.js'
+                'resources/scripts/admin.js',
+                'resources/scripts/registration.js'
             ],
             refresh: true,
         }),

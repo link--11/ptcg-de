@@ -18,7 +18,7 @@ table
     &.data-table
         width: 100%
         +take-full-width
-        margin-bottom: 25px
+        margin-bottom: 1.5rem
 
         th
             padding: 8px 0
@@ -38,21 +38,6 @@ table
 
                 &:hover
                     border-bottom: 2px dotted
-
-                &:hover::after
-                    content: "\f0dc"
-                    font-family: "Font Awesome 5 Free"
-                    position: absolute
-                    transform: translate(0,-50%)
-                    right: 10px
-                    top: 50%
-
-                &.center:hover::after
-                    position: static
-                    transform: none
-                    display: inline-block
-                    width: 100%
-                    text-align: center
 
         td
             height: 40px
@@ -75,6 +60,18 @@ table
             &.inline
                 display: inline-block
                 height: auto
+
+    &.info-table
+        width: 100%
+        margin-bottom: 1rem
+
+        td
+            height: 40px
+            border-bottom: 1px solid var(--text-color)
+            padding: 5px
+
+        tr:last-child td
+            border-bottom: 0
 
     &.center
         th, td

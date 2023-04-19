@@ -25,6 +25,7 @@ use Illuminate\Support\Facades\Route;
 Route::view('/', 'home');
 
 Route::get('/ligen', [DataController::class, 'stores'])->name('stores');
+Route::get('/ligen/{id}', [DataController::class, 'store'])->name('store');
 
 Route::get('/turniere', [DataController::class, 'tournaments'])->name('tournaments');
 Route::get('/turniere/{id}', [DataController::class, 'tournament'])->name('tournament');
@@ -44,6 +45,8 @@ Route::group([ 'prefix' => 'xyz', 'middleware' => [ 'auth' ], 'as' => 'admin.' ]
     Route::get('/stores', [StoreController::class, 'stores'])->name('stores');
     Route::get('/stores/{id}', [StoreController::class, 'store'])->name('store');
     Route::patch('/stores/{id}', [StoreController::class, 'update'])->name('store.update');
+
+    Route::post('/stores/{id}/pic', [StoreController::class, 'upload'])->name('store.picture');
 
     Route::get('/tournaments', [TournamentController::class, 'tournaments'])->name('tournaments');
     Route::post('/tournaments', [TournamentController::class, 'create'])->name('tournaments.create');
