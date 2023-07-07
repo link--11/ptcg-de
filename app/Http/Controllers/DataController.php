@@ -21,7 +21,8 @@ class DataController extends Controller
         $tournament = Tournament::find($id);
 
         return view('pages.tournament', [
-            'tournament' => $tournament
+            'tournament' => $tournament,
+            'registrations' => $tournament->registrations->count()
         ]);
     }
 
@@ -54,7 +55,7 @@ class DataController extends Controller
     }
 
     public function home () {
-        $upcoming = Tournament::where('date', '>', now())->orderBy('date')->take(5)->get();
+        $upcoming = Tournament::where('date', '>', now())->orderBy('date')->take(8)->get();
 
         return view('home', [
             'upcoming' => $upcoming

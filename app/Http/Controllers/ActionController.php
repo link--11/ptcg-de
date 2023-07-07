@@ -13,6 +13,11 @@ class ActionController extends Controller
         $honey = $request->input('deck'); // hidden input field that should be empty (anti-bot)
         if (!$data || $honey) return [ 'ok' => false ];
 
+        $check = [ [ 'playerid', $data['playerid'] ], [ 'tournament_id', $data['tournament_id'] ] ];
+        if (Registration::where($check)->exists()) {
+            return [ 'ok' => false, 'message' => 'Du bist bereits angemeldet!' ];
+        }
+
         Registration::create($data);
 
         $tournament = Tournament::find($data['tournament_id']);

@@ -1,14 +1,15 @@
-import { $, $$ } from './util/dom.js'
+import { $ } from './util/dom.js'
 import { post } from './util/fetch.js'
 
 const $registrationForm = $('.registration-form')
-const $submit = $('button[data-submit]')
 
 const $response = $('.response')
 const updateResponse = (message, success) => {
     $response.className = success ? 'alert success' : 'alert error'
     $response.textContent = message
 }
+
+const $count = $('.reg-count')
 
 let waiting = false
 $registrationForm.addEventListener('submit', e => {
@@ -30,7 +31,12 @@ $registrationForm.addEventListener('submit', e => {
 
     post(`/anmeldung`, { _token, data }, (res) => {
         waiting = false
-        $registrationForm.reset()
-        updateResponse('Anmeldung gesendet!', true)
+        if (res.ok) {
+            $registrationForm.reset()
+            updateResponse('Anmeldung gesendet!', true)
+            $count.textContent = Number($count.textContent) + 1
+        } else {
+            updateResponse(res.message, false)
+        }
     })
 })

@@ -80,4 +80,6 @@
     <button data-submit>Absenden</button>
 </form>
 
+<p>Aktuell <b class="reg-count">{{ $registrations }}</b> Anmeldungen</p>
+
 @endsection
