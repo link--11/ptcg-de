@@ -30,7 +30,7 @@
                 <div class="flex gap-3">
                     <div class="flex-1">
                         <x-input-label for="cost" value="Teilnahme in €" />
-                        <x-text-input :value="$tournament->cost" id="cost" name="cost" type="number" class="block w-full mt-1" />
+                        <x-text-input :value="$tournament->cost" id="cost" name="cost" type="number" step=0.5 class="block w-full mt-1" />
                     </div>
                     <div class="flex-1">
                         <x-input-label for="cap" value="Max. Teilnehmer" />
@@ -70,6 +70,7 @@
                 <th>Nachname</th>
                 <th>Player ID</th>
                 <th>Geburtsdatum</th>
+                <th>Angemeldet</th>
             </tr>
 
             @php $i = 1 @endphp
@@ -80,6 +81,7 @@
                     <td>{{ $player->last_name }}</td>
                     <td>{{ $player->playerid }}</td>
                     <td>{{ $player->birthdate }}</td>
+                    <td>{{ $player->created_at }}</td>
                 </tr>
 
                 @php $i++ @endphp
