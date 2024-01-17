@@ -12,7 +12,7 @@ class Registration extends Model
 
     protected $fillable = [
         'tournament_id', 'first_name', 'last_name',
-        'playerid', 'birthdate', 'email'
+        'playerid', 'birthdate', 'email', 'code'
     ];
 
     public function tournament () {

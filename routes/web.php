@@ -31,6 +31,8 @@ Route::get('/turniere/{id}', [DataController::class, 'tournament'])->name('tourn
 Route::get('/ergebnisse', [DataController::class, 'results'])->name('results');
 
 Route::post('/anmeldung', [ActionController::class, 'register'])->name('register');
+Route::get('/anmeldung/{code}', [ActionController::class, 'registration'])->name('registration');
+Route::post('/abmeldung', [ActionController::class, 'unregister'])->name('unregister');
 
 Route::group([ 'prefix' => 'xyz', 'middleware' => [ 'auth' ] ],function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
