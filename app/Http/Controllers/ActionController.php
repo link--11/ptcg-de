@@ -110,7 +110,9 @@ function send_confirmation_email ($data, $tournament) {
     $domain = explode('//', $url)[1];
 
     $headers = "From: info@$domain\n";
-    $headers .= "Reply-To: info@$domain\n";
+
+    $replyto = $store->email ?? "info@$domain";
+    $headers .= "Reply-To: $replyto\n";
 
     mail($to, $subject, $message, $headers);
 }

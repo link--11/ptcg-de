@@ -18,7 +18,7 @@ class DataController extends Controller
 
     public function tournament (Request $request) {
         $id = $request->route('id');
-        $tournament = Tournament::find($id);
+        $tournament = Tournament::findOrFail($id);
 
         return view('pages.tournament', [
             'tournament' => $tournament,
@@ -36,7 +36,7 @@ class DataController extends Controller
 
     public function store (Request $request) {
         $id = $request->route('id');
-        $store = Store::find($id);
+        $store = Store::findOrFail($id);
         $tournaments = Tournament::where('date', '>', now())
             ->where('store_id', $id)
             ->get()->sortBy('date');
