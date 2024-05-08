@@ -22,13 +22,15 @@ if ($registrationForm) {
 
         const _token = $('input[name=_token]').value
 
+        const bd = (val) => `${val}-01-01`
+
         const data = {
             tournament_id: $registrationForm.dataset.id,
             email: $('input[name=email]').value,
             first_name: $('input[name=first_name]').value,
             last_name: $('input[name=last_name]').value,
             playerid: $('input[name=id]').value,
-            birthdate: $('input[name=bd]').value,
+            birthdate: bd($('input[name=bd]').value),
         }
 
         post(`/anmeldung`, { _token, data }, (res) => {

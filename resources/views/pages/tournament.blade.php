@@ -73,8 +73,8 @@
                 <input type="text" id="id" name="id">
             </div>
             <div class="split">
-                <label for="bd">Geburtsdatum</label>
-                <input id="bd" name="bd" type="date" max="{{ date('Y-m-d') }}" required>
+                <label for="bd">Geburtsjahr</label>
+                <input id="bd" name="bd" type="number" min=1900 max="{{ date('Y') }}" required>
             </div>
         </div>
 

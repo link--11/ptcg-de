@@ -76,7 +76,7 @@
                     <th>Vorname</th>
                     <th>Nachname</th>
                     <th>Player ID</th>
-                    <th>Geburtsdatum</th>
+                    <th>Geburtsjahr</th>
                     <th>Angemeldet</th>
                 </tr>
 
@@ -87,7 +87,7 @@
                         <td>{{ $player->first_name }}</td>
                         <td>{{ $player->last_name }}</td>
                         <td>{{ $player->playerid }}</td>
-                        <td>{{ $player->birthdate }}</td>
+                        <td>{{ substr($player->birthdate, 0, 4) }}</td>
                         <td>{{ $player->created_at }}</td>
                     </tr>
 
