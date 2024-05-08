@@ -44,42 +44,46 @@
 
 <h2>Anmeldeformular</h2>
 
-<form action="post" class="registration-form" data-id="{{ $tournament->id }}">
-    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+@if ($tournament->registration)
+    <form action="post" class="registration-form" data-id="{{ $tournament->id }}">
+        <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-    <div class="response"></div>
+        <div class="response"></div>
 
-    <input type="hidden" name="deck">
+        <input type="hidden" name="deck">
 
-    <div class="row">
-        <label for="name">Email</label>
-        <input type="email" id="email" name="email" required>
-    </div>
-
-    <div class="row">
-        <div class="split">
-            <label for="first_name">Vorname</label>
-            <input id="first_name" name="first_name" type="text" required>
+        <div class="row">
+            <label for="name">Email</label>
+            <input type="email" id="email" name="email" required>
         </div>
-        <div class="split">
-            <label for="last_name">Nachname</label>
-            <input id="last_name" name="last_name" type="text">
-        </div>
-    </div>
-    <div class="row">
-        <div class="split">
-            <label for="id">Player ID</label>
-            <input type="text" id="id" name="id">
-        </div>
-        <div class="split">
-            <label for="bd">Geburtsdatum</label>
-            <input id="bd" name="bd" type="date" max="{{ date('Y-m-d') }}" required>
-        </div>
-    </div>
 
-    <button data-submit>Absenden</button>
-</form>
+        <div class="row">
+            <div class="split">
+                <label for="first_name">Vorname</label>
+                <input id="first_name" name="first_name" type="text" required>
+            </div>
+            <div class="split">
+                <label for="last_name">Nachname</label>
+                <input id="last_name" name="last_name" type="text">
+            </div>
+        </div>
+        <div class="row">
+            <div class="split">
+                <label for="id">Player ID</label>
+                <input type="text" id="id" name="id">
+            </div>
+            <div class="split">
+                <label for="bd">Geburtsdatum</label>
+                <input id="bd" name="bd" type="date" max="{{ date('Y-m-d') }}" required>
+            </div>
+        </div>
 
-<p>Aktuell <b class="reg-count">{{ $registrations }}</b> Anmeldungen</p>
+        <button data-submit>Absenden</button>
+    </form>
+
+    <p>Aktuell <b class="reg-count">{{ $registrations }}</b> Anmeldungen</p>
+@else
+    <p class="no-registration">Das Anmeldeformular ist für dieses Turnier nicht aktiviert. Weitere Informationen findest du in der Turnierbeschreibung.</p>
+@endif
 
 @endsection

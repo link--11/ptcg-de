@@ -8,7 +8,6 @@ use App\Models\Tournament;
 use App\Models\User;
 use DateTime;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 
 class TournamentController extends Controller
@@ -90,7 +89,10 @@ class TournamentController extends Controller
         list($allowed, $tournament) = $this->checkAuthorization($request);
         if (!$allowed) abort(403);
 
-        $tournament->fill($request->all());
+        $values = $request->all();
+        $values['registration'] = $request->has('registration');
+
+        $tournament->fill($values);
         $tournament->save();
 
         return Redirect::route('admin.tournament', [ 'id' => $tournament->id ])

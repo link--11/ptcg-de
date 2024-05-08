@@ -43,6 +43,11 @@
                     <textarea id="notes" name="notes" :value="$tournament->notes" rows=4 class="input">{{ $tournament->notes }}</textarea>
                 </div>
 
+                <label for="enable_registration" class="inline-flex items-center">
+                    <input id="enable_registration" type="checkbox" @if ($tournament->registration) checked @endif class="text-indigo-600 border-gray-300 rounded shadow-sm focus:ring-indigo-500" name="registration">
+                    <span class="ml-2">Anmeldeliste aktivieren</span>
+                </label>
+
                 <div class="flex items-center gap-4">
                     <x-primary-button>{{ __('Save') }}</x-primary-button>
 
@@ -61,33 +66,37 @@
         </div>
     </div>
 
-    <div class="mt-6 overflow-hidden bg-white shadow-sm sm:rounded-lg">
-        <h2 class="p-4 text-xl font-bold">Anmeldeliste</h2>
-        <table class="w-full">
-            <tr>
-                <th>#</th>
-                <th>Vorname</th>
-                <th>Nachname</th>
-                <th>Player ID</th>
-                <th>Geburtsdatum</th>
-                <th>Angemeldet</th>
-            </tr>
+    @if ($tournament->registration)
 
-            @php $i = 1 @endphp
-            @foreach ($registrations as $player)
+        <div class="mt-6 overflow-hidden bg-white shadow-sm sm:rounded-lg">
+            <h2 class="p-4 text-xl font-bold">Anmeldeliste</h2>
+            <table class="w-full">
                 <tr>
-                    <td>{{ $i }}</td>
-                    <td>{{ $player->first_name }}</td>
-                    <td>{{ $player->last_name }}</td>
-                    <td>{{ $player->playerid }}</td>
-                    <td>{{ $player->birthdate }}</td>
-                    <td>{{ $player->created_at }}</td>
+                    <th>#</th>
+                    <th>Vorname</th>
+                    <th>Nachname</th>
+                    <th>Player ID</th>
+                    <th>Geburtsdatum</th>
+                    <th>Angemeldet</th>
                 </tr>
 
-                @php $i++ @endphp
-            @endforeach
-        </table>
-    </div>
+                @php $i = 1 @endphp
+                @foreach ($registrations as $player)
+                    <tr>
+                        <td>{{ $i }}</td>
+                        <td>{{ $player->first_name }}</td>
+                        <td>{{ $player->last_name }}</td>
+                        <td>{{ $player->playerid }}</td>
+                        <td>{{ $player->birthdate }}</td>
+                        <td>{{ $player->created_at }}</td>
+                    </tr>
+
+                    @php $i++ @endphp
+                @endforeach
+            </table>
+        </div>
+
+    @endif
 
     <div class="p-6 mt-6 bg-white shadow sm:rounded-lg">
         <div class="max-w-xl">

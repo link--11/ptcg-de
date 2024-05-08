@@ -11,7 +11,7 @@ class Tournament extends Model
 
     protected $fillable = [
         'store_id', 'date', 'type', 'format',
-        'cost', 'cap', 'notes',
+        'cost', 'cap', 'notes', 'registration',
         'locator_id'
     ];
 
