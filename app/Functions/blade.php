@@ -35,3 +35,14 @@ function full_date($date) {
 
     return datefmt_format($full_date_format, strtotime($date));
 }
+
+function tournament_name ($tournament) {
+    $name = __("pokemon.$tournament->type");
+
+    if ($tournament->type === 'locals' && $tournament->format) {
+        $format = $tournament->format === 'glc' ? 'GLC' : __("pokemon.$tournament->format");
+        $name = "$format $name";
+    }
+
+    return $name;
+}

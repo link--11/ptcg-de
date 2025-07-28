@@ -19,7 +19,7 @@
                 <td>Adresse</td>
                 <td>
                     {{ $store->address }} <br>
-                    {{ $store->zip_code}} {{ $store->city }}
+                    {{ $store->zip_code }} {{ $store->city }}
                 </td>
             </tr>
             @if ($store->email)
@@ -63,7 +63,7 @@
         @foreach ($tournaments as $row)
             <tr data-date="{{ $row->date }}" data-type="{{ $row->type }}">
                 <td><a href="{{ route('tournament', [ 'id' => $row->id ]) }}">{{ full_date($row->date) }}</a></td>
-                <td><a href="{{ route('tournament', [ 'id' => $row->id ]) }}">{{ __("pokemon.$row->type") }}</a></td>
+                <td><a href="{{ route('tournament', [ 'id' => $row->id ]) }}">{{ tournament_name($row) }}</a></td>
             </tr>
         @endforeach
     </table>

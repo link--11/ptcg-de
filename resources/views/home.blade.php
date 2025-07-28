@@ -9,7 +9,7 @@
             @foreach ($upcoming as $row)
                 <a class="tournament" href="{{ route('tournament', [ 'id' => $row->id ]) }}">
                     <div class="info">
-                        <div class="name">{{ __("pokemon.$row->type") }} {{ $row->store->city }}</div>
+                        <div class="name">{{ tournament_name($row) }} {{ $row->store->city }}</div>
                         <div class="date">{{ short_date($row->date) }}</div>
                     </div>
                     @if ($row->type === 'cup' || $row->type === 'challenge')

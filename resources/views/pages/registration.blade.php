@@ -11,7 +11,7 @@
 
 <p>
     <a href="{{ route('tournament', [ 'id' => $tournament->id ]) }}" class="underline">
-        {{ __("pokemon.$tournament->type") }} {{ $tournament->store->name }} {{ $tournament->store->city }}<br>
+        {{ tournament_name($tournament) }} {{ $tournament->store->name }} {{ $tournament->store->city }}<br>
         {{ full_date($tournament->date) }}
     </a><br>
 </p>

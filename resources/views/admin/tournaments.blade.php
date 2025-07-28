@@ -49,7 +49,7 @@
             @foreach ($upcoming as $tournament)
                 <tr>
                     <td><a href="{{ route('admin.tournament', [ 'id' => $tournament->id ]) }}">{{ $tournament->date }}</a></td>
-                    <td><a href="{{ route('admin.tournament', [ 'id' => $tournament->id ]) }}">{{ __("pokemon.$tournament->type") }}</a></td>
+                    <td><a href="{{ route('admin.tournament', [ 'id' => $tournament->id ]) }}">{{ tournament_name($tournament) }}</a></td>
                     <td><a href="{{ route('admin.tournament', [ 'id' => $tournament->id ]) }}">{{ $tournament->store->name }} {{ $tournament->store->city }}</a></td>
                 </tr>
 
@@ -70,7 +70,7 @@
             @foreach ($past as $tournament)
                 <tr>
                     <td><a href="{{ route('admin.tournament', [ 'id' => $tournament->id ]) }}">{{ $tournament->date }}</a></td>
-                    <td><a href="{{ route('admin.tournament', [ 'id' => $tournament->id ]) }}">{{ __("pokemon.$tournament->type") }}</a></td>
+                    <td><a href="{{ route('admin.tournament', [ 'id' => $tournament->id ]) }}">{{ tournament_name($tournament) }}</a></td>
                     <td><a href="{{ route('admin.tournament', [ 'id' => $tournament->id ]) }}">{{ $tournament->store->name }} {{ $tournament->store->city }}</a></td>
                 </tr>
 

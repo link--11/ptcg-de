@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', join(' ', [__("pokemon.$tournament->type"), $tournament->store->name, $tournament->store->city, date_only($tournament->date)]))
+@section('title', join(' ', [tournament_name($tournament), $tournament->store->name, $tournament->store->city, date_only($tournament->date)]))
 
 @section('content')
 
@@ -9,7 +9,7 @@
     @vite('resources/scripts/registration.js')
 @endsection
 
-<h1>{{ __("pokemon.$tournament->type") }} {{ $tournament->store->city }}</h1>
+<h1>{{ tournament_name($tournament) }} {{ $tournament->store->city }}</h1>
 
 <div class="tournament-info">
     <table class="info-table">
