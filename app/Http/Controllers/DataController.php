@@ -20,9 +20,18 @@ class DataController extends Controller
         $id = $request->route('id');
         $tournament = Tournament::findOrFail($id);
 
+        $standings = [ 'MA' => [], 'SR' => [], 'JR' => [] ];
+        if ($tournament->results) {
+            foreach ($tournament->standings as $player) {
+                $standings[$player->division][] = $player;
+            }
+        }
+
         return view('pages.tournament', [
             'tournament' => $tournament,
-            'registrations' => $tournament->registrations->count()
+            'registrations' => $tournament->registrations->count(),
+            'standings' => $standings,
+            'photos' => $tournament->photos
         ]);
     }
 
@@ -48,17 +57,20 @@ class DataController extends Controller
     }
 
     public function results () {
+        $tournaments = Tournament::where('results', 1)->orderBy('date', 'desc')->get();
 
         return view('pages.results', [
-
+            'tournaments' => $tournaments
         ]);
     }
 
     public function home () {
         $upcoming = Tournament::where('date', '>', now())->orderBy('date')->take(8)->get();
+        $completed = Tournament::where('results', 1)->orderBy('date', 'desc')->take(8)->get();
 
         return view('home', [
-            'upcoming' => $upcoming
+            'upcoming' => $upcoming,
+            'completed' => $completed
         ]);
     }
 }

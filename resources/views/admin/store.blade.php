@@ -87,6 +87,6 @@
             @if ($store->picture)
                 <img class="max-w-lg mt-4" src="/upload/stores/{{ $store->id }}/{{ $store->picture}}" alt="{{ $store->name }}">
             @endif
-
+        </div>
     </div>
 </x-admin-layout>

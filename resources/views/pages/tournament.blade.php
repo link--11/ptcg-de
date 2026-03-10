@@ -7,6 +7,7 @@
 @section('scripts')
     @parent
     @vite('resources/scripts/registration.js')
+    @vite('resources/scripts/gallery.js')
 @endsection
 
 <h1>{{ tournament_name($tournament) }} {{ $tournament->store->city }}</h1>
@@ -42,48 +43,89 @@
     @if ($tournament->notes) <p>{{ $tournament->notes }}</p> @endif
 </div>
 
-<h2>Anmeldeformular</h2>
+@if ($tournament->results || count($tournament->photos))
 
-@if ($tournament->registration)
-    <form action="post" class="registration-form" data-id="{{ $tournament->id }}">
-        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-        <div class="response"></div>
-
-        <input type="hidden" name="deck">
-
-        <div class="row">
-            <label for="name">Email</label>
-            <input type="email" id="email" name="email" required>
-        </div>
-
-        <div class="row">
-            <div class="split">
-                <label for="first_name">Vorname</label>
-                <input id="first_name" name="first_name" type="text" required>
+    <div class="tournament-results">
+        @if ($tournament->results)
+            <div>
+                <h2>Ergebnisse</h2>
+                <table class="data-table striped">
+                    @foreach ($standings as $division => $players)
+                        @if (count($players))
+                            <tr>
+                                <th colspan=3 class="sub-heading">{{ __("pokemon.$division") }}</th>
+                            </tr>
+                            @foreach ($players as $row)
+                                <tr>
+                                    <td>{{ $row->place }}</td>
+                                    <td>{{ $row->name }}</td>
+                                    <td>{{ $row->wins }}-{{ $row->losses }}-{{ $row->ties }}</td>
+                                </tr>
+                            @endforeach
+                        @endif
+                    @endforeach
+                </table>
             </div>
-            <div class="split">
-                <label for="last_name">Nachname</label>
-                <input id="last_name" name="last_name" type="text">
-            </div>
-        </div>
-        <div class="row">
-            <div class="split">
-                <label for="id">Player ID</label>
-                <input type="text" id="id" name="id">
-            </div>
-            <div class="split">
-                <label for="bd">Geburtsjahr</label>
-                <input id="bd" name="bd" type="number" min=1900 max="{{ date('Y') }}" required>
-            </div>
-        </div>
+        @endif
 
-        <button data-submit>Absenden</button>
-    </form>
+        @if (count($tournament->photos))
+            <div>
+                <h2>Fotos</h2>
+                <div class="tournament-photos">
+                    @foreach ($tournament->photos as $photo)
+                        <a data-fslightbox href="/upload/tournaments/{{ $tournament->id }}/{{ $photo->id }}.webp">
+                            <img src="/upload/tournaments/{{ $tournament->id }}/{{ $photo->id }}.webp" class="thumbnail">
+                        </a>
+                    @endforeach
+                </div>
+            </div>
+        @endif
+    </div>
 
-    <p>Aktuell <b class="reg-count">{{ $registrations }}</b> Anmeldungen</p>
 @else
-    <p class="no-registration">Das Anmeldeformular ist für dieses Turnier nicht aktiviert. Weitere Informationen findest du in der Turnierbeschreibung.</p>
+    <h2>Anmeldeformular</h2>
+
+    @if ($tournament->registration)
+        <form action="post" class="registration-form" data-id="{{ $tournament->id }}">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+            <div class="response"></div>
+
+            <input type="hidden" name="deck">
+
+            <div class="row">
+                <label for="name">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="row">
+                <div class="split">
+                    <label for="first_name">Vorname</label>
+                    <input id="first_name" name="first_name" type="text" required>
+                </div>
+                <div class="split">
+                    <label for="last_name">Nachname</label>
+                    <input id="last_name" name="last_name" type="text">
+                </div>
+            </div>
+            <div class="row">
+                <div class="split">
+                    <label for="id">Player ID</label>
+                    <input type="text" id="id" name="id">
+                </div>
+                <div class="split">
+                    <label for="bd">Geburtsjahr</label>
+                    <input id="bd" name="bd" type="number" min=1900 max="{{ date('Y') }}" required>
+                </div>
+            </div>
+
+            <button data-submit>Absenden</button>
+        </form>
+
+        <p>Aktuell <b class="reg-count">{{ $registrations }}</b> Anmeldungen</p>
+    @else
+        <p class="no-registration">Das Anmeldeformular ist für dieses Turnier nicht aktiviert. Weitere Informationen findest du in der Turnierbeschreibung.</p>
+    @endif
 @endif
 
 @endsection

@@ -10,7 +10,7 @@
                 <a class="tournament" href="{{ route('tournament', [ 'id' => $row->id ]) }}">
                     <div class="info">
                         <div class="name">{{ tournament_name($row) }} {{ $row->store->city }}</div>
-                        <div class="date">{{ short_date($row->date) }}</div>
+                        <div class="date">{{ short_date($row->date) }} • {{ $row->store->name }}</div>
                     </div>
                     @if ($row->type === 'cup' || $row->type === 'challenge' || $row->type === 'locals' || $row->type === 'vg_challenge' || $row->type === 'vg_cup' || $row->type === 'go_challenge' || $row->type === 'go_cup' || $row->type === 'prerelease')
                         <img src="/pics/{{ $row->type }}.png" alt="{{ __("pokemon.$row->type") }}">
@@ -29,7 +29,17 @@
     <div class="recent">
         <h2>Aktuelle Ergebnisse</h2>
         <div>
-            <img src="/under_construction.gif">
+            @foreach ($completed as $row)
+                <a class="tournament" href="{{ route('tournament', [ 'id' => $row->id ]) }}">
+                    <div class="info">
+                        <div class="name">{{ tournament_name($row) }} {{ $row->store->city }}</div>
+                        <div class="date">{{ date_only($row->date) }} • {{ $row->store->name }}</div>
+                    </div>
+                    @if ($row->type === 'cup' || $row->type === 'challenge' || $row->type === 'locals' || $row->type === 'vg_challenge' || $row->type === 'vg_cup' || $row->type === 'go_challenge' || $row->type === 'go_cup' || $row->type === 'prerelease')
+                        <img src="/pics/{{ $row->type }}.png" alt="{{ __("pokemon.$row->type") }}">
+                    @endif
+                </a>
+            @endforeach
         </div>
     </div>
 </div>

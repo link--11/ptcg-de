@@ -11,7 +11,7 @@ class Tournament extends Model
 
     protected $fillable = [
         'store_id', 'date', 'type', 'format',
-        'cost', 'cap', 'notes', 'registration',
+        'cost', 'cap', 'notes', 'registration', 'results',
         'locator_id'
     ];
 
@@ -24,9 +24,20 @@ class Tournament extends Model
         return $this->hasMany(Registration::class);
     }
 
+    public function standings()
+    {
+        return $this->hasMany(Standing::class);
+    }
+
+    public function photos()
+    {
+        return $this->hasMany(Photo::class);
+    }
+
     public function delete()
     {
         $this->registrations()->delete();
+        $this->standings()->delete();
         return parent::delete();
     }
 }

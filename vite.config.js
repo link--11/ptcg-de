@@ -9,7 +9,8 @@ export default defineConfig({
                 'resources/styles/tailwind.css',
                 'resources/scripts/main.js',
                 'resources/scripts/admin.js',
-                'resources/scripts/registration.js'
+                'resources/scripts/registration.js',
+                'resources/scripts/gallery.js'
             ],
             refresh: true,
         }),

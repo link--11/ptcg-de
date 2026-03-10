@@ -7,10 +7,12 @@
     "require": {
         "php": "^8.0.2",
         "guzzlehttp/guzzle": "^7.2",
+        "intervention/image-laravel": "^1.5",
         "laravel/framework": "^9.19",
         "laravel/tinker": "^2.7"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.16",
         "fakerphp/faker": "^1.9.1",
         "laravel/pint": "^1.0",
         "laravel/sail": "^1.0.1",

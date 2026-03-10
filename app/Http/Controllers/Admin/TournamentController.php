@@ -3,12 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Photo;
+use App\Models\Standing;
 use App\Models\Store;
 use App\Models\Tournament;
 use App\Models\User;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Str;
+use Intervention\Image\Laravel\Facades\Image;
 
 class TournamentController extends Controller
 {
@@ -81,7 +85,9 @@ class TournamentController extends Controller
         return view('admin.tournament', [
             'tournament' => $tournament,
             'store' => $tournament->store,
-            'registrations' => $tournament->registrations
+            'registrations' => $tournament->registrations,
+            'standings' => $tournament->standings,
+            'photos' => $tournament->photos
         ]);
     }
 
@@ -106,6 +112,144 @@ class TournamentController extends Controller
         $tournament->delete();
 
         return Redirect::route('admin.tournaments')->with('status', 'tournament-deleted');
+    }
+
+    public function tdf (Request $request) {
+        list($allowed, $tournament) = $this->checkAuthorization($request);
+        if (!$allowed) abort(403);
+
+        $file = $request->file('tdf_file');
+        $tdf = simplexml_load_file($file->getRealPath());
+
+        $players = [];
+        $standings = [];
+
+        foreach ($tdf->players->player as $player) {
+            $id = (int) $player->attributes()['userid'];
+            $players[$id] = [
+                'first_name' => (string) $player->firstname,
+                'last_name' => (string) $player->lastname,
+                'wins' => 0,
+                'losses' => 0,
+                'ties' => 0
+            ];
+        }
+
+        foreach ($tdf->pods->pod as $pod) {
+            foreach ($pod->rounds->round as $round) {
+                foreach ($round->matches->match as $match) {
+                    $outcome = (int) $match->attributes()['outcome'];
+
+                    if ($outcome === 5) { // bye
+                        $id = (int) $match->player->attributes()['userid'];
+                        $players[$id]['wins']++;
+                    } else {
+                        $p1 = (int) $match->player1->attributes()['userid'];
+                        $p2 = (int) $match->player2->attributes()['userid'];
+
+                        if ($outcome === 1) {
+                            $players[$p1]['wins']++;
+                            $players[$p2]['losses']++;
+                        } else if ($outcome === 2) {
+                            $players[$p1]['losses']++;
+                            $players[$p2]['wins']++;
+                        } else {
+                            $players[$p1]['ties']++;
+                            $players[$p2]['ties']++;
+                        }
+                    }
+                }
+            }
+        }
+
+        foreach ($tdf->standings->pod as $pod) {
+            $attr = $pod->attributes();
+            if ((string) $attr['type'] === 'dnf' || !$pod->player) continue;
+            $division = match((string) $attr['category']) {
+                "2" => "MA",
+                "0" => "JR",
+                default => "SR"
+            };
+
+            foreach ($pod->player as $player) {
+                $pa = $player->attributes();
+                $id = (int) $pa['id'];
+
+                $data = $players[$id];
+
+                if ($division !== 'MA') {
+                    $data['last_name'] = substr($data['last_name'], 0, 1) . '.';
+                }
+
+                $standings[] = [
+                    'tournament_id' => $tournament->id,
+                    'division' => $division,
+                    'name' => "$data[first_name] $data[last_name]",
+                    'playerid' => $id,
+                    'place' => (int) $pa['place'],
+                    'wins' => $data['wins'],
+                    'losses' => $data['losses'],
+                    'ties' => $data['ties']
+                ];
+            }
+        }
+
+        Standing::insert($standings);
+        $tournament->fill([ 'results' => 1 ]);
+        $tournament->save();
+
+        return Redirect::route('admin.tournament', [ 'id' => $tournament->id ]);
+    }
+
+    public function deleteResults (Request $request) {
+        list($allowed, $tournament) = $this->checkAuthorization($request);
+        if (!$allowed) abort(403);
+
+        $tournament->standings()->delete();
+        $tournament->fill([ 'results' => 0 ]);
+        $tournament->save();
+
+        return Redirect::route('admin.tournament', [ 'id' => $tournament->id ]);
+    }
+
+    public function uploadPhotos (Request $request) {
+        list($allowed, $tournament) = $this->checkAuthorization($request);
+        if (!$allowed) abort(403);
+
+        if ($request->hasFile('files')) {
+
+            $photos = [];
+
+            $dir = public_path("upload/tournaments/$tournament->id");
+            if (!is_dir($dir)) mkdir($dir);
+
+            foreach ($request->file('files') as $uploadedFile) {
+
+                $img = Image::read($uploadedFile);
+                $img->scaleDown(1080, 1080);
+
+                $id = Str::uuid();
+                $img->toWebp(80)->save("$dir/$id.webp");
+
+                $photos[] = [
+                    'id' => $id,
+                    'tournament_id' => $tournament->id
+                ];
+            }
+
+            Photo::insert($photos);
+        }
+
+        return Redirect::route('admin.tournament', [ 'id' => $tournament->id ]);
+    }
+
+    public function deletePhoto (Request $request) {
+        list($allowed) = $this->checkAuthorization($request);
+        if (!$allowed) abort(403);
+
+        Photo::where('id', $request->route('pid'))->delete();
+
+        return response()->json(['status' => 'success']);
     }
 
 }

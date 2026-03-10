@@ -54,6 +54,12 @@ Route::group([ 'prefix' => 'xyz', 'middleware' => [ 'auth' ], 'as' => 'admin.' ]
     Route::patch('/tournaments/{id}', [TournamentController::class, 'update'])->name('tournament.update');
     Route::delete('/tournaments/{id}', [TournamentController::class, 'destroy'])->name('tournament.delete');
 
+    Route::post('/tournaments/{id}/tdf', [TournamentController::class, 'tdf'])->name('tournament.tdf');
+    Route::post('/tournaments/{id}/reset', [TournamentController::class, 'deleteResults'])->name('tournament.reset');
+
+    Route::post('/tournaments/{id}/photos', [TournamentController::class, 'uploadPhotos'])->name('tournament.photos');
+    Route::delete('/tournaments/{id}/photos/{pid}', [TournamentController::class, 'deletePhoto'])->name('tournament.photo.delete');
+
     Route::middleware('admin')->group(function () {
         Route::post('/stores', [StoreController::class, 'create'])->name('stores.create');
 

@@ -78,3 +78,24 @@
 .no-registration
     max-width: 500px
     margin: -0.25rem 0 1rem 0
+
+.tournament-photos
+    display: flex
+    gap: 0.5rem
+    flex-wrap: wrap
+    align-items: center
+
+img.thumbnail
+    max-width: 300px
+    max-height: 200px
+
+.tournament-results
+    display: grid
+    margin-bottom: 1rem
+    gap: 1.5rem
+
+    h2
+        margin-top: 0
+
+    +media('md')
+        grid-template-columns: 1fr 1fr
