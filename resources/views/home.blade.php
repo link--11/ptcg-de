@@ -12,7 +12,7 @@
                         <div class="name">{{ tournament_name($row) }} {{ $row->store->city }}</div>
                         <div class="date">{{ short_date($row->date) }}</div>
                     </div>
-                    @if ($row->type === 'cup' || $row->type === 'challenge')
+                    @if ($row->type === 'cup' || $row->type === 'challenge' || $row->type === 'locals' || $row->type === 'vg_challenge' || $row->type === 'vg_cup' || $row->type === 'go_challenge' || $row->type === 'go_cup' || $row->type === 'prerelease')
                         <img src="/pics/{{ $row->type }}.png" alt="{{ __("pokemon.$row->type") }}">
                     @endif
                 </a>
