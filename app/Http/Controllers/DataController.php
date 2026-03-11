@@ -8,11 +8,20 @@ use Illuminate\Http\Request;
 
 class DataController extends Controller
 {
-    public function tournaments () {
-        $tournaments = Tournament::where('date', '>', now())->get()->sortBy('date');
+    public function tournaments (Request $request) {
+        $type = $request->query('type');
+
+        $tournaments = Tournament::query()
+            ->where('date', '>', now())
+            ->when($request->query('type'), function ($query, $type) {
+                $query->where('type', $type);
+            })
+            ->orderBy('date')
+            ->get();
 
         return view('pages.tournaments', [
-            'tournaments' => $tournaments
+            'tournaments' => $tournaments,
+            'type' => $type
         ]);
     }
 
