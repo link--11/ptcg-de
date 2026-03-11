@@ -1,58 +1,28 @@
 {
-    "name": "",
-    "short_name": "",
-    "description": "",
+    "name": "POP Rhein-Ruhr",
+    "short_name": "POP",
+    "description": "Play! Pokémon NRW Community Website",
     "display": "minimal-ui",
-    "background_color": "#121212",
-    "theme_color": "#a41c32",
+    "background_color": "#000033",
+    "theme_color": "#ffce00",
     "icons": [
         {
-            "src": "",
+            "src": "/pwa/pichu-48x48.png",
             "type": "image/png",
             "sizes": "48x48",
-            "purpose": "maskable"
+            "purpose": "any maskable"
         },
         {
-            "src": "",
+            "src": "/pwa/pichu-96x96.png",
             "type": "image/png",
             "sizes": "96x96",
-            "purpose": "maskable"
+            "purpose": "any maskable"
         },
         {
-            "src": "",
+            "src": "/pwa/pichu.png",
             "type": "image/png",
-            "sizes": "192x192",
-            "purpose": "maskable"
-        },
-        {
-            "src": "",
-            "type": "image/png",
-            "sizes": "512x512",
-            "purpose": "maskable"
-        },
-        {
-            "src": "",
-            "type": "image/png",
-            "sizes": "48x48",
-            "purpose": "any"
-        },
-        {
-            "src": "",
-            "type": "image/png",
-            "sizes": "96x96",
-            "purpose": "any"
-        },
-        {
-            "src": "",
-            "type": "image/png",
-            "sizes": "192x192",
-            "purpose": "any"
-        },
-        {
-            "src": "",
-            "type": "image/png",
-            "sizes": "512x512",
-            "purpose": "any"
+            "sizes": "144x144",
+            "purpose": "any maskable"
         }
     ],
     "id": "/?source=pwa",
